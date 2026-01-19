@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  agency-blog:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - PAYLOAD_SECRET=\${PAYLOAD_SECRET}
+      - DATABASE_URI=\${DATABASE_URI}
+    volumes:
+      - db_data:/app/local.db
+      - media_data:/app/public/media
+    networks:
+      - edge
+    labels:
+      caddy: agency.faldi.xyz
+      caddy.reverse_proxy: '{{upstreams 3000}}'
+
+volumes:
+  db_data:
+  media_data:
+
+networks:
+  edge:
+    external: true
