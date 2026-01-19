@@ -1,4 +1,5 @@
 import { Github, Twitter, Linkedin, Mail } from 'lucide-react'
+import Link from 'next/link'
 
 const socialLinks = [
   { href: 'https://github.com', icon: Github, label: 'GitHub' },
@@ -22,12 +23,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Brand Section */}
           <div className="md:col-span-4">
-            <a
+            <Link
               href="/"
               className="font-mono text-xl font-bold text-white hover:text-cyan-500 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded"
             >
               Agency<span className="text-cyan-500">_</span>Creative
-            </a>
+            </Link>
             <p className="mt-4 text-sm text-slate-400 max-w-xs">
               Building digital experiences with technical transparency. Code is art. Architecture is
               beauty.
@@ -119,8 +120,8 @@ export function Footer() {
         {/* Accessibility Statement */}
         <div className="mt-8 p-4 border border-slate-800 rounded-lg bg-slate-900/50">
           <p className="text-xs text-slate-500 font-mono">
-            <span className="text-amber-500">/* Accessibility */</span> This website is designed to
-            be accessible to all users. We follow WCAG 2.1 AA guidelines. If you experience any
+            <span className="text-amber-500">{`/* Accessibility */`}</span> This website is designed
+            to be accessible to all users. We follow WCAG 2.1 AA guidelines. If you experience any
             accessibility issues, please{' '}
             <a
               href="mailto:accessibility@agency.creative"

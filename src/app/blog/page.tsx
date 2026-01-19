@@ -6,6 +6,28 @@ import { Calendar, Clock, FileText, ArrowLeft, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import { getPosts, type PostWithMedia } from '@/lib/posts'
 import Image from 'next/image'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description:
+    'Technical insights, tutorials, and thoughts on building better software. Stay updated with the latest from Agency Creative.',
+  openGraph: {
+    title: 'Blog | Agency Creative',
+    description:
+      'Technical insights, tutorials, and thoughts on building better software. Stay updated with the latest from Agency Creative.',
+    url: 'https://agency-creative.com/blog',
+    type: 'website',
+    images: ['/og-image.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog | Agency Creative',
+    description:
+      'Technical insights, tutorials, and thoughts on building better software. Stay updated with the latest from Agency Creative.',
+    images: ['/og-image.png'],
+  },
+}
 
 function formatDate(dateString: string | null | undefined): string {
   if (!dateString) return 'No date'

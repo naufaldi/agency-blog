@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { ArrowRight, Calendar, Clock, FileText } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -81,8 +80,8 @@ export function BlogSection({ posts }: BlogSectionProps) {
                         transition={{ duration: 0.2 }}
                       >
                         <Link href={`/blog/${post.slug}`}>
-                          <Card className="h-full border-slate-700 bg-slate-800/50 overflow-hidden transition-colors duration-200 hover:border-cyan-500/50 cursor-pointer group">
-                            <CardContent className="p-0">
+                          <article className="h-full border border-slate-700 bg-slate-800/50 overflow-hidden transition-colors duration-200 hover:border-cyan-500/50 cursor-pointer group rounded-lg">
+                            <div className="p-0">
                               {/* Post Preview Image or Icon */}
                               <div className="relative h-32 bg-linear-to-br from-slate-700 to-slate-800 overflow-hidden flex items-center justify-center">
                                 {post.featuredImage?.url ? (
@@ -102,7 +101,9 @@ export function BlogSection({ posts }: BlogSectionProps) {
                                 <div className="flex items-center gap-3 mb-3 text-xs font-mono text-slate-500">
                                   <span className="flex items-center gap-1">
                                     <Calendar size={12} />
-                                    {formatDate(post.publishedAt)}
+                                    <time dateTime={post.publishedAt || undefined}>
+                                      {formatDate(post.publishedAt)}
+                                    </time>
                                   </span>
                                   {post.readTime && (
                                     <span className="flex items-center gap-1">
@@ -133,8 +134,8 @@ export function BlogSection({ posts }: BlogSectionProps) {
                                   </div>
                                 )}
                               </div>
-                            </CardContent>
-                          </Card>
+                            </div>
+                          </article>
                         </Link>
                       </motion.div>
                     </motion.div>

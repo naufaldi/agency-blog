@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
+import Link from 'next/link'
 
 const navLinks = [
   { href: '#process', label: 'Process' },
@@ -20,13 +21,13 @@ export function Header() {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a
+          <Link
             href="/"
             className="font-mono text-xl font-bold text-white transition-colors hover:text-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-slate-900"
             aria-label="Agency Creative Home"
           >
             Agency<span className="text-cyan-500">_</span>Creative
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center gap-8" role="navigation">

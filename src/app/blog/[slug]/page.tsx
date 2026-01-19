@@ -7,6 +7,7 @@ import { getPostBySlug, getAllPostSlugs } from '@/lib/posts'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import { RichTextContent } from '@/components/rich-text-content'
+import type { Metadata } from 'next'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -27,7 +28,7 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }))
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = await getPostBySlug(slug)
 
@@ -35,9 +36,38 @@ export async function generateMetadata({ params }: Props) {
     return { title: 'Post Not Found' }
   }
 
+  const publishedTime = post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined
+  const modifiedTime = post.updatedAt ? new Date(post.updatedAt).toISOString() : undefined
+  const ogImage = post.featuredImage?.url || '/og-image.png'
+
   return {
-    title: `${post.title} | Blog`,
-    description: post.excerpt,
+    title: post.title,
+    description: post.excerpt || 'Read this article on Agency Creative blog',
+    keywords: post.tags?.map((t) => t.tag) || [],
+    authors: [{ name: 'Agency Creative Team' }],
+    openGraph: {
+      type: 'article',
+      url: `https://agency-creative.com/blog/${slug}`,
+      title: post.title,
+      description: post.excerpt || 'Read this article on Agency Creative blog',
+      publishedTime,
+      modifiedTime,
+      authors: ['Agency Creative Team'],
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt || 'Read this article on Agency Creative blog',
+      images: [ogImage],
+    },
   }
 }
 
