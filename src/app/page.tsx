@@ -6,8 +6,11 @@ import { MetricsSection } from '@/components/landing/metrics-section'
 import { BlogSection } from '@/components/landing/blog-section'
 import { CTASection } from '@/components/landing/cta-section'
 import { Footer } from '@/components/landing/footer'
+import { getLatestPosts } from '@/lib/posts'
 
-export default function Home() {
+export default async function Home() {
+  const latestPosts = await getLatestPosts(3)
+
   return (
     <>
       <Header />
@@ -16,7 +19,7 @@ export default function Home() {
         <ProcessSection />
         <ShowcaseSection />
         <MetricsSection />
-        <BlogSection />
+        <BlogSection posts={latestPosts} />
         <CTASection />
       </main>
       <Footer />
