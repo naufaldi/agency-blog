@@ -42,7 +42,7 @@ Technical CTA: A conversion section that speaks to engineers and decision-makers
 </color_guidance>
 <typography_direction>
 - Headlines: JetBrains Mono (For a technical feel)
-- Body: Inter or Satoshi
+- Body:  Satoshi
 </typography_direction>
 <output_format>
 Complete component code emphasizing clean, readable logic and early returns.
